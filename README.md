@@ -1,24 +1,17 @@
-# README
+First added a simple controller naming pages 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In pages controller added Home and About page for the Library application
 
-Things you may want to cover:
+Created a migration database file and instantitated required arguments and ran the migration .
 
-* Ruby version
+Upon succesfull migration created some Articles using rails console 
 
-* System dependencies
+Then with minimum entries in the db file created Show page
 
-* Configuration
+Thereby initiated new page for adding new books to the library
 
-* Database creation
+Upon finishing New created an edit and update tasks for the application
 
-* Database initialization
+Lastly initiated the Delete operation on the library application 
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is the final commit till the CRUD operations on the library application.
