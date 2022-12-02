@@ -7,20 +7,35 @@ class BooksController < ApplicationController
 
 
   def index 
-    @books = Library.all
+    @book = Library.all
   end 
   
   def new 
     @book = Library.new
   end 
-
+  
+  def edit
+    @book = Library.find(params[:id])
+  end
 
   def create 
     @book=Library.new(params.require(:book).permit(:title ,:author ,:pages , :date_of_publication, :summary , :rent))
     if @book.save
       flash[:notice] = "Book is added successfully"
-    render plain: @book.inspect
+    redirect_to  books_path(@book)
     else render 'new'
     end
   end 
+
+  def update
+    @book = Library.find(params[:id])
+    if @book.update(params.require(:book).permit(:title ,:author ,:pages , :date_of_publication, :summary , :rent))
+      flash[:notice] = "Edited Successfully"
+      redirect_to  books_path(@book)
+    else 
+      render 'edit'
+    end 
+  
+    end
+
 end 
