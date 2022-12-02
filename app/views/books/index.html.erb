@@ -5,9 +5,10 @@
       <th> Title </th>
       <th> Author </th>
       <th> Pages </th>
-      <th> Published Date </th>
+      <th \t> Published Date </th>
       <th> Summary </th>
-      <th> Rent Availability </th>
+      <th \t> Rent Options </th>
+      <th colspan="3"> Actions </th>
     </tr>
   </thead>
 
@@ -22,7 +23,15 @@
       <td><%= book.date_of_publication %></td>
       <td><%= book.summary %></td>
       <td><%= book.rent%></td>
+      <td><%= link_to 'Show', book_path(book) %></td>
+      <td><%= link_to 'Edit', edit_book_path(book) %></td>
+      <td><%= link_to 'Delete', book_path(book) , method: :delete %></td>
         </tr>
       <% end %>
     </tbody>
 </table>
+
+
+<p>
+  <%= link_to 'Add new Book' , new_book_path %>
+</p>
