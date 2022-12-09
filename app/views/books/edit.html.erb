@@ -1,6 +1,6 @@
 <h1> Edit data in library </h1>
 <% if @book.errors.any? %>
-  <h2> The following reasons prevented the articles to be saved </h2>
+  <h2> The following reasons prevented the articles to be edited </h2>
     <ul>
      <%= @book.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -37,12 +37,14 @@
     <%= f.text_area :summary %>
   </p>
 
-  <p>
-    <%= f.label :Renting %> <br/>
-    <%= f.text_field :rent %>
-  </p>
+  <div class="field">    
+    <%= f.label :Rent %></br>
+    <span class="option">Yes<span><%= f.radio_button :rent, "Yes" %></br>
+    <span class="option">No<span><%= f.radio_button :rent, "No" %></br>
+  </div>
 
   <p>
     <%= f.submit %>
   </p>
+
 <% end %>

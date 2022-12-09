@@ -1,0 +1,39 @@
+<h1> List of all Employees in Library</h1>
+<table>
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th> Email </th>
+      <th> Phonenumber </th>
+      <th> Gender </th>
+      <th> Age </th>
+      <th> Date_of_birth </th>
+      <th> Address </th>
+      <th colspan="3"> Actions </th>
+    </tr>
+  </thead>
+
+
+
+    <tbody>
+      <% @staff.each do |staff| %>
+        <tr>
+      <td><%= staff.name %></td>
+      <td><%= staff.email %></td>
+      <td><%= staff.phonenumber %></td>
+      <td><%= staff.gender %></td>
+      <td><%= staff.age %></td>
+      <td><%= staff.date_of_birth%></td>
+      <td><%= staff.address%></td>
+      <td><%= link_to 'Show', staff_path(staff) %></td>
+      <td><%= link_to 'Edit', edit_staff_path(staff) %></td>
+      <td><%= link_to 'Delete', staff_path(staff) , method: :delete , data: "Are you sure" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+
+<p>
+  <%= link_to 'Add new Employee' , new_staff_path %>
+</p>
