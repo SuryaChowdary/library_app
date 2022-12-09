@@ -19,7 +19,7 @@ class BooksController < ApplicationController
   end
 
   def create 
-    @book=Library.new(params.require(:book).permit(:title ,:author ,:pages , :date_of_publication, :summary , :rent))
+    @book=Library.new(params.require(:book).permit(:title , :author_id ,:pages , :date_of_publication, :summary , :rent))
     @book.author = Author.first
     if @book.save
       flash[:notice] = "Book is added successfully"

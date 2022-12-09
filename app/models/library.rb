@@ -1,5 +1,5 @@
 class Library < ApplicationRecord 
-
+  belongs_to :author
   validates :title , presence: true , length: {minimum:6 , maximun:100}
   validates :author , presence: true , length: {minimum:4 , maximum:100}
   validates :pages , presence: true , length: {minimum:1 , maximum:1000}

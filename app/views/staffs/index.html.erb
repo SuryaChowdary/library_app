@@ -19,8 +19,8 @@
       <% @staff.each do |staff| %>
         <tr>
       <td><%= staff.name %></td>
-      <td><%= staff.email %></td>
-      <td><%= staff.phonenumber %></td>
+      <td colspan=1><%= staff.email %></td>
+      <td ><%= staff.phonenumber %></td>
       <td><%= staff.gender %></td>
       <td><%= staff.age %></td>
       <td><%= staff.date_of_birth%></td>
@@ -36,4 +36,8 @@
 
 <p>
   <%= link_to 'Add new Employee' , new_staff_path %>
+</p>
+
+<p>
+  <%= link_to 'Home' , root_path %>
 </p>

@@ -16,8 +16,8 @@
   </p>
     
   <p>
-    <%= f.label :Author %> <br/>
-    <%= f.text_field :author %>
+    <%= f.label :Authors%> <br/>
+    <%= f.collection_select  :topic, Author.all, :id, :name %>
   </p>
   
   <p> 

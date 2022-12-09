@@ -18,7 +18,6 @@ class AuthorsController < ApplicationController
 
   def create 
     @author=Author.new(params.require(:author).permit(:name, :gender , :age , :date_of_birth, :address))
-    
     if @author.save
       flash[:notice] = "Author details are added successfully"
       redirect_to  authors_path(@author)
