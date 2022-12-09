@@ -27,7 +27,7 @@
       <td><%= staff.address%></td>
       <td><%= link_to 'Show', staff_path(staff) %></td>
       <td><%= link_to 'Edit', edit_staff_path(staff) %></td>
-      <td><%= link_to 'Delete', staff_path(staff) , method: :delete , data: "Are you sure" %></td>
+      <td><%= link_to 'Delete', staff_path(staff) , method: :delete , data: {confirm: "Are you sure?"}%></td>
         </tr>
       <% end %>
     </tbody>

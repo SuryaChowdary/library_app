@@ -39,5 +39,11 @@ class StaffsController < ApplicationController
     end 
   end
 
+  def destroy
+    @staff = Staff.find(params[:id])
+    @staff.destroy
+    redirect_to staffs_path
+
+  end
   
 end
