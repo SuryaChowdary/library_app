@@ -1,0 +1,15 @@
+<h1> Add New Location </h1>
+
+<%= form_with scope: :location, url: locations_path, local: true do |f| %>
+  <p> 
+    <%= f.label :AddPlace %> <br/>
+    <%= f.text_area :place %>
+  </p>
+  <p>
+    <%= f.submit "Add Location" %>
+  </p>
+
+  <p>
+    <%= link_to 'Back' , locations_path %>
+  </p>
+<% end%>

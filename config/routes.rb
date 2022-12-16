@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :staffs ,only: [:show , :new , :create , :index , :edit, :update , :destroy]
   resources :authors ,only: [:show , :new , :create , :index , :edit, :update , :destroy]
   resources :bookrooms
+  resources :locations
 end
