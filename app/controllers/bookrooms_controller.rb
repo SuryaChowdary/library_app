@@ -18,7 +18,7 @@ class BookroomsController < ApplicationController
   end
 
   def create 
-    @bookroom=Bookroom.new(params.require(:bookroom).permit(:name))
+    @bookroom=Bookroom.new(params.require(:bookroom).permit(:name , location_ids: []))
     if @bookroom.save
       flash[:notice] = "Library branch is added successfully"
     redirect_to  bookrooms_path(@bookroom)
@@ -28,7 +28,7 @@ class BookroomsController < ApplicationController
 
   def update
     @bookroom = Bookroom.find(params[:id])
-    if @bookroom.update(params.require(:bookroom).permit(:name))
+    if @bookroom.update(params.require(:bookroom).permit(:name , location_ids: []))
       flash[:notice] = "Libray Branch name Edited Successfully"
       redirect_to  bookrooms_path(@bookroom)
     else 

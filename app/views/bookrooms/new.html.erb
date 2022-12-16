@@ -5,6 +5,14 @@
     <%= f.label :Name %> <br/>
     <%= f.text_area :name %>
   </p>
+
+  <p> 
+    <%= f.label :Locations %> <br/>
+    <%= f.select :location_ids, Location.all.collect {|x| [x.place, x.id]}, {}, :multiple => true %>
+
+
+  </p>
+
   <p>
     <%= f.submit "Add Library" %>
   </p>
