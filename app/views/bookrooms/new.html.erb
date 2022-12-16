@@ -1,0 +1,15 @@
+<h1> Add New Library </h1>
+
+<%= form_with scope: :bookroom, url: bookrooms_path, local: true do |f| %>
+  <p> 
+    <%= f.label :Name %> <br/>
+    <%= f.text_area :name %>
+  </p>
+  <p>
+    <%= f.submit "Add Library" %>
+  </p>
+
+  <p>
+    <%= link_to 'Back' , bookrooms_path %>
+  </p>
+<% end%>

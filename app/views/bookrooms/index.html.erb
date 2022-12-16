@@ -1,0 +1,30 @@
+<h1> List of all Libraries </h1>
+<table>
+  <thead>
+    <tr>
+      <th> Name </th>
+    </tr>
+  </thead>
+
+
+
+    <tbody>
+      <% @bookroom.each do |bookroom| %>
+        <tr>
+      <td><%= bookroom.name %></td>
+      <td><%= link_to 'Show', bookroom_path(bookroom) %></td>
+      <td><%= link_to 'Edit', edit_bookroom_path(bookroom) %></td>
+      <td><%= link_to 'Delete', bookroom_path(bookroom) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+
+<p>
+  <%= link_to 'Add new Library' , new_bookroom_path %>
+</p>
+
+<p>
+  <%= link_to 'Home' , root_path %>
+</p>
