@@ -1,8 +1,6 @@
 class AuthorsController < ApplicationController
   
-  def show
-    @author = Author.find(params[:id])
-  end
+  before_action :set_author, only: [:show, :edit,:update, :destroy]
 
   def index 
     @author = Author.all
@@ -12,25 +10,26 @@ class AuthorsController < ApplicationController
     @author = Author.new
   end 
 
-  def edit
-    @author = Author.find(params[:id])
-  end
-
   def create 
-    @author=Author.new(params.require(:author).permit(:name, :gender , :age , :date_of_birth, :address))
+    @author=Author.new(author_params)
     if @author.save
       flash[:notice] = "Author details are added successfully"
       redirect_to  authors_path(@author)
     else 
       render 'new'
-     
     end
+  end
+
+  def show
+
+  end
+
+  def edit
 
   end 
 
   def update
-    @author = Author.find(params[:id])
-    if @author.update(params.require(:author).permit(:name, :gender , :age , :date_of_birth, :address))
+    if @author.update(author_params)
       flash[:notice] = "Edited details Successfully"
       redirect_to  @author
     else 
@@ -39,10 +38,18 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
-    @author = Author.find(params[:id])
     @author.destroy
     redirect_to authors_path
-
   end
-  
+
+  private
+
+  def set_author
+    @author = Author.find(params[:id])
+  end
+
+  def author_params
+    params.require(:author).permit(:name, :gender , :age , :date_of_birth, :address)
+  end
+
 end

@@ -8,7 +8,6 @@
     </ul>
 <% end%>
 
-
 <%= form_with scope: :book, url: books_path, local: true do |f| %>
   <p> 
     <%= f.label :Title %> <br/>
@@ -41,8 +40,8 @@
     <%= f.text_area :summary %>
   </p>
 
-
   <p>
     <%= f.submit %>
   </p>
+  
 <% end %>

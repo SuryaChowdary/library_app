@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  get 'about' , to: 'pages#about'
-  #resources :books ,only: [:show , :index ,:new, :create, :edit, :update ,:destroy]
+  get 'about', to: 'pages#about'
   resources :books
   resources :staffs 
   resources :authors 

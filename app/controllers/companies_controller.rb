@@ -1,10 +1,6 @@
 class CompaniesController < ApplicationController
 
-  def show 
-    @company = Company.find(params[:id])
-    @book = Book.all
-  end
-
+  before_action :set_company , only: [:show, :edit,:update, :destroy]
 
   def index 
     @company = Company.all
@@ -14,38 +10,46 @@ class CompaniesController < ApplicationController
     @company = Company.new
   end 
   
-  def edit
-    @company = Company.find(params[:id])
-  end
-
   def create 
-    @company=Company.new(params.require(:company).permit(:name , location_ids: []))
+    @company = Company.new(company_params)
     if @company.save
       flash[:notice] = "Library branch is added successfully"
     redirect_to  companies_path(@company)
-    else render 'new'
+    else 
+      render 'new'
     end
   end 
 
+  def show 
+
+    @book = Book.all
+  end
+
+  def edit
+
+  end
+
   def update
-    @company = Company.find(params[:id])
-    if @company.update(params.require(:company).permit(:name , location_ids: []))
+    if @company.update(company_params)
       flash[:notice] = "Libray Branch name Edited Successfully"
       redirect_to  companies_path(@company)
     else 
       render 'edit'
     end 
+  end
+
+  def destroy
+    @company.destroy
+    redirect_to companies_path
+  end
   
-    end
-    
+  private
 
-    def destroy
-      @company = Company.find(params[:id])
-      @company.destroy
-      redirect_to companies_path
+  def set_company
+    @company = Company.find(params[:id])
+  end
 
-    end 
-
-
-
+  def company_params
+    params.require(:company).permit(:name , location_ids: [])
+  end
 end

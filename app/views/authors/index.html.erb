@@ -10,9 +10,6 @@
       <th colspan="3"> Actions </th>
     </tr>
   </thead>
-
-
-
     <tbody>
       <% @author.each do |author| %>
         <tr>
@@ -28,7 +25,6 @@
       <% end %>
     </tbody>
 </table>
-
 
 <p>
   <%= link_to 'Add new Author' , new_author_path %>

@@ -1,8 +1,6 @@
 class StaffsController < ApplicationController
-  
-  def show
-    @staff = Staff.find(params[:id])
-  end
+
+  before_action :set_staff, only: [:show, :edit,:update, :destroy]
 
   def index 
     @staff = Staff.all
@@ -12,26 +10,26 @@ class StaffsController < ApplicationController
     @staff = Staff.new
   end 
 
-  def edit
-    @staff = Staff.find(params[:id])
-  end
-
   def create 
-    @staff=Staff.new(params.require(:staff).permit(:name ,:email ,:phonenumber, :gender , :age , :date_of_birth, :address))
-    
+    @staff=Staff.new(staff_params)
     if @staff.save
       flash[:notice] = "Staff details are added successfully"
       redirect_to  staffs_path(@staff)
     else 
       render 'new'
-     
     end
+  end
 
-  end 
+  def show
+
+  end
+
+  def edit
+    
+  end
 
   def update
-    @staff = Staff.find(params[:id])
-    if @staff.update(params.require(:staff).permit(:name ,:email ,:phonenumber, :gender , :age , :date_of_birth, :address))
+    if @staff.update(staff_params)
       flash[:notice] = "Edited details Successfully"
       redirect_to  @staff
     else 
@@ -40,10 +38,18 @@ class StaffsController < ApplicationController
   end
 
   def destroy
-    @staff = Staff.find(params[:id])
     @staff.destroy
     redirect_to staffs_path
+  end
 
+  private
+
+  def set_staff
+    @staff = Staff.find(params[:id])
+  end
+
+  def staff_params
+    params.require(:staff).permit(:name ,:email ,:phonenumber, :gender , :age , :date_of_birth, :address)
   end
   
 end
