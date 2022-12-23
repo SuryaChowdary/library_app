@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th> Title </th>
+      <th> Author </th>
       <th> Pages </th>
       <th \t> Published Date </th>
       <th> Summary </th>
@@ -10,14 +11,11 @@
       <th colspan="3"> Actions </th>
     </tr>
   </thead>
-
-
-
     <tbody>
       <% @book.each do |book| %>
         <tr>
       <td><%= book.title %></td>
-
+      <td><%= book.author.name if book.author %>
       <td><%= book.pages %></td>
       <td><%= book.date_of_publication %></td>
       <td><%= book.summary %></td>

@@ -1,17 +1,16 @@
 <h1> Edit data in library </h1>
 <% if @book.errors.any? %>
-  <h2> The following reasons prevented the articles to be edited </h2>
+  <h2> The following reasons prevented the articles to be saved </h2>
     <ul>
      <%= @book.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
      <% end %>
     </ul>
-    <% end%>
+<% end%>
 
 
-<%= form_with scope: :book, url: books_path, local: true do |f| %>
 
-
+<%= form_with(model: @book, local: true) do |f| %>
 
   <p> 
     <%= f.label :Title %> <br/>

@@ -1,5 +1,5 @@
 class Author < ApplicationRecord
-  has_many :libraries
+  has_many :books
   validates :name , presence: true, length: {minimum: 3 , maximum: 100}
   validates :gender , presence: true
   validates :age, presence: true

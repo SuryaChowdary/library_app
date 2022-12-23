@@ -1,8 +1,17 @@
-<p>
-  <strong>
-   This is an application where you will find the books and its authors and also staff members of the library<br/>
-  </strong>
-</p>
-<p>
-    <%= link_to 'Home' , root_path %>
-  </p>
+<h1> List of all Locations of <%= @company.name%> </h1>
+  <table>
+    <thead>
+      <tr>
+        <th> Location </th>
+        <th colspan=3> Actions </th>
+      </tr>
+      <tr>
+    </thead>
+      <tbody>
+        <% @company.locations.each do |location| %>
+          <tr>
+        <td><%= location.place %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>

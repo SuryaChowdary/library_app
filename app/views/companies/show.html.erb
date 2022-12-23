@@ -1,13 +1,13 @@
 <h1><strong><%= @company.name %> </strong></h1>
 
-<p>
-  <%= link_to 'See About Page' , about_path %>
-</p>
-
-<p>
-  <%= link_to "View Locations" , locations_path%>
-<p>
-
+<p> List of all Locations of <%= @company.name%> </p>
+  <% @company.locations.each do |location| %>
+    <table>
+      <tr>
+        <td><%= location.place %></td>
+     </tr>
+    </table>
+  <% end %>
 <p>
    <%= link_to "View Books", books_path%> 
 </p>
@@ -23,3 +23,7 @@
 <p>
   <%= link_to 'Home' , root_path %>
 </p>
+
+
+
+
