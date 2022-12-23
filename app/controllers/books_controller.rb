@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   end 
   
   def new 
-    @book = Book.new
+    @book = Book.new(skip_author: true)
   end 
 
   def create 

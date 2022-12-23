@@ -16,7 +16,7 @@
     
   <p>
     <%= f.label :Authors%> <br/>
-    <%= f.collection_select  :topic, Author.all, :id, :name %>
+    <%= f.select :author_id, Author.all.collect {|x| [x.name, x.id]}, {} %>
   </p>
   
   <p> 
@@ -43,5 +43,5 @@
   <p>
     <%= f.submit %>
   </p>
-  
+
 <% end %>
