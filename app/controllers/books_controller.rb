@@ -2,24 +2,24 @@ class BooksController < ApplicationController
 
 
   def show 
-    @book = Library.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
 
   def index 
-    @book = Library.all
+    @book = Book.all
   end 
   
   def new 
-    @book = Library.new
+    @book = Book.new
   end 
   
   def edit
-    @book = Library.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def create 
-    @book=Library.new(params.require(:book).permit(:title , :author_id ,:pages , :date_of_publication, :summary , :rent))
+    @book=Book.new(params.require(:book).permit(:title , :author_id ,:pages , :date_of_publication, :summary , :rent))
     @book.author = Author.first
     if @book.save
       flash[:notice] = "Book is added successfully"
@@ -29,7 +29,7 @@ class BooksController < ApplicationController
   end 
 
   def update
-    @book = Library.find(params[:id])
+    @book = Book.find(params[:id])
     if @book.update(params.require(:book).permit(:title ,:author ,:pages , :date_of_publication, :summary , :rent))
       flash[:notice] = "Edited Successfully"
       redirect_to  books_path(@book)
@@ -41,7 +41,7 @@ class BooksController < ApplicationController
     
 
     def destroy
-      @book = Library.find(params[:id])
+      @book = Book.find(params[:id])
       @book.destroy
       redirect_to books_path
 

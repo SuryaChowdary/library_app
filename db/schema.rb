@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_16_183040) do
+ActiveRecord::Schema.define(version: 2022_12_22_201647) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -22,20 +22,7 @@ ActiveRecord::Schema.define(version: 2022_12_16_183040) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "bookroom_locations", force: :cascade do |t|
-    t.integer "bookroom_id"
-    t.integer "location_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "bookrooms", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "libraries", force: :cascade do |t|
+  create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
     t.integer "pages"
@@ -45,6 +32,19 @@ ActiveRecord::Schema.define(version: 2022_12_16_183040) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "author_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "company_locations", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "location_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "locations", force: :cascade do |t|

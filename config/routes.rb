@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get 'about' , to: 'pages#about'
   #resources :books ,only: [:show , :index ,:new, :create, :edit, :update ,:destroy]
   resources :books
-  resources :staffs ,only: [:show , :new , :create , :index , :edit, :update , :destroy]
-  resources :authors ,only: [:show , :new , :create , :index , :edit, :update , :destroy]
-  resources :bookrooms
+  resources :staffs 
+  resources :authors 
+  resources :companies
   resources :locations
 end
