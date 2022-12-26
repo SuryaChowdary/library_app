@@ -1,0 +1,14 @@
+<h1> Details of Regions</h1>
+
+<p><strong> name: </strong> <%= @region.name %></p>
+
+<p> List of all Locations of <%= @region.name%> </p>
+  <% @region.locations.each do |location| %>
+    <table>
+      <tr>
+        <td><%= location.place %></td>
+     </tr>
+    </table>
+  <% end %>
+
+<p><%= link_to 'Back' , regions_path %></p>

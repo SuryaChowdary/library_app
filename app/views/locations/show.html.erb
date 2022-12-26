@@ -2,6 +2,15 @@
 
 <p><strong> name: </strong> <%= @location.place%></p>
 
+<p> List of all companies of <%= @location.place%> </p>
+  <% @location.companies.each do |company| %>
+    <table>
+      <tr>
+        <td><%= company.name %></td>
+     </tr>
+    </table>
+  <% end %>
+
 <p>
   <%= link_to 'Back' , locations_path %>
 </p>

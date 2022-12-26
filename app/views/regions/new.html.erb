@@ -1,0 +1,20 @@
+<h1> Add Region </h1>
+<% if @region.errors.any? %>
+  <h2> The following reasons prevented the region details to be saved </h2>
+    <ul>
+      <%= @region.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+<% end%>
+
+<%= form_with scope: :region, url: regions_path, local: true do |f| %>
+
+  <p> 
+    <%= f.label :Name %> <br/>
+    <%= f.text_area :name %>
+  </p>
+
+  <p><%= f.submit "Add Region"%></p>
+
+<% end %>

@@ -1,0 +1,27 @@
+<h1> List of all Regions</h1>
+<table>
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th colspan=3> Actions </th>
+    </tr>
+    <tr>
+  </thead>
+    <tbody>
+      <% @region.each do |region| %>
+        <tr>
+      <td><%= region.name %></td>
+      <td><%= link_to 'Show', region_path(region) %></td>
+      <td><%= link_to 'Edit', edit_region_path(region) %></td>
+      <td><%= link_to 'Delete', region_path(region) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+        </tr>
+      <% end %>
+      
+    </tbody>
+</table>
+
+<p><%= link_to 'Add new region' , new_region_path %></p>
+
+<p><%= link_to 'Back' , companies_path%></p>
+
+<p><%= link_to 'Home' , root_path %></p>

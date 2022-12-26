@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :companies
   resources :locations
   resources :libraries
+  resources :regions
 end

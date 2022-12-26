@@ -5,6 +5,12 @@
     <%= f.label :AddPlace %> <br/>
     <%= f.text_area :place %>
   </p>
+
+  <p> 
+    <%= f.label :Region %> <br/>
+    <%= f.select :region_id, Region.all.collect {|x| [x.name, x.id]}, {} %>
+  </p>
+
   <p>
     <%= f.submit "Add Location" %>
   </p>
