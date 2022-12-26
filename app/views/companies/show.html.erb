@@ -9,6 +9,19 @@
     </table>
   <% end %>
 
+  <br>
+
+  <p> List of all Libraries of <%= @company.name%> </p>
+  <% @company.libraries.each do |library| %>
+    <table>
+      <tr>
+        <td><%= library.name %></td>
+     </tr>
+    </table>
+  <% end %>
+
+<br>
+
 <p><%= link_to "View Libraries" , libraries_path%></p>
 
 <p> <%= link_to "View Authors" , authors_path(@author)  %></p>

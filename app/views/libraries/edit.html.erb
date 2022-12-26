@@ -16,5 +16,10 @@
     <%= f.text_area :name %>
   </p>
 
+  <p> 
+    <%= f.label :Company %> <br/>
+    <%= f.select :company_id, Company.all.collect {|x| [x.name, x.id]}, {} %>
+  </p>
+
   <p><%= f.submit "Update Library" %></p>
 <% end %>

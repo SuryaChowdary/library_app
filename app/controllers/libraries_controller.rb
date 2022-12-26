@@ -1,5 +1,7 @@
 class LibrariesController < ApplicationController
   
+  before_action :set_library, only: [:show, :edit, :update, :destroy] 
+
   def index
     @library = Library.all
   end
@@ -9,7 +11,7 @@ class LibrariesController < ApplicationController
   end 
 
   def create
-    @library=Library.new(params.require(:library).permit(:name))
+    @library=Library.new(library_params)
     if @library.save
       flash[:notice]="Library was added successfully"
       redirect_to libraries_path(@library)
@@ -19,16 +21,13 @@ class LibrariesController < ApplicationController
   end
 
   def show
-    @library = Library.find(params[:id])
   end
 
   def edit
-    @library = Library.find(params[:id])
   end
 
   def update
-    @library = Library.find(params[:id])
-    if @library.update(params.require(:library).permit(:name))
+    if @library.update(library_params)
     flash[:notice] = "Library was updated successfully"
       redirect_to @library
     else
@@ -37,10 +36,19 @@ class LibrariesController < ApplicationController
   end
 
   def destroy
-    @library = Library.find(params[:id])
     @library.destroy
     flash[:notice] = "Library was deleted Successfully"
     redirect_to libraries_path 
+  end
+
+  private
+  
+  def set_library
+    @library = Library.find(params[:id])
+  end
+
+  def library_params
+    params.require(:library).permit(:name, :company_id)
   end
 
 end

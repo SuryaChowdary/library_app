@@ -1,5 +1,7 @@
 class RegionsController < ApplicationController
   
+  before_action :set_region, only: [:show, :edit, :update, :destroy]
+  
   def index
     @region = Region.all
   end
@@ -9,7 +11,7 @@ class RegionsController < ApplicationController
   end 
 
   def create
-    @region=Region.new(params.require(:region).permit(:name))
+    @region=Region.new(region_params)
     if @region.save
       flash[:notice]="Region was added successfully"
       redirect_to regions_path(@region)
@@ -19,16 +21,14 @@ class RegionsController < ApplicationController
   end
 
   def show
-    @region = Region.find(params[:id])
   end
 
   def edit
-    @region = Region.find(params[:id])
   end
 
   def update
     @region = Region.find(params[:id])
-    if @region.update(params.require(:region).permit(:name))
+    if @region.update(region_params)
     flash[:notice] = "Region was updated successfully"
       redirect_to @region
     else
@@ -37,10 +37,19 @@ class RegionsController < ApplicationController
   end
 
   def destroy
-    @region = Region.find(params[:id])
     @region.destroy
     flash[:notice] = "Region was deleted Successfully"
     redirect_to regions_path 
+  end
+
+  private
+  
+  def set_region
+    @region = Region.find(params[:id])
+  end
+
+  def region_params
+    params.require(:region).permit(:name)
   end
 
 end
