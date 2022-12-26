@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :authors 
   resources :companies
   resources :locations
+  resources :libraries
 end

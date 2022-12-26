@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     if @company.save
       flash[:notice] = "Library branch is added successfully"
-    redirect_to  companies_path(@company)
+      redirect_to  companies_path(@company)
     else 
       render 'new'
     end

@@ -8,21 +8,14 @@
      </tr>
     </table>
   <% end %>
-<p>
-   <%= link_to "View Books", books_path%> 
-</p>
 
-<p>
-  <%= link_to "View Authors" , authors_path(@author)  %>
-</p>
+<p><%= link_to "View Libraries" , libraries_path%></p>
 
-<p>
-  <%= link_to "View Staff" , staffs_path  %>
-</p>
+<p> <%= link_to "View Authors" , authors_path(@author)  %></p>
 
-<p>
-  <%= link_to 'Home' , root_path %>
-</p>
+<p><%= link_to "View Staff" , staffs_path  %></p>
+
+<p><%= link_to 'Home' , root_path %></p>
 
 
 
