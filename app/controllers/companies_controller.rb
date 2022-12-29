@@ -21,7 +21,6 @@ class CompaniesController < ApplicationController
   end 
 
   def show 
-
     @book = Book.all
   end
 
