@@ -1,6 +1,7 @@
 class StaffsController < ApplicationController
 
   before_action :set_staff, only: [:show, :edit,:update, :destroy]
+  before_action :require_user
 
   def index 
     @staff = Staff.all
