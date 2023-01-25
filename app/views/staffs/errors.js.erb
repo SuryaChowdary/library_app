@@ -1,0 +1,7 @@
+<% if @staff.errors.any? %>
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'staffs/errors', staff: @staff) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @staff.id %>").html("<%= j(render 'staffs/errors', staff: @staff) %>");
+  <% end %> 
+<% end %>

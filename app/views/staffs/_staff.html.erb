@@ -1,0 +1,78 @@
+ <tr id="staff-<%=staff.id%>">
+  <td><%= staff.name %></td>
+  <td colspan=1><%= staff.email %></td>
+  <td ><%= staff.phonenumber %></td>
+  <td><%= staff.gender %></td>
+  <td><%= staff.age %></td>
+  <td><%= staff.date_of_birth%></td>
+  <td><%= staff.address%></td>
+  <td><%= link_to 'Show', staff_path(staff), class: 'btn btn-info' %></td>
+  <td><%= link_to 'Edit', edit_staff_path(staff), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editstaff-#{staff.id}"}%></td>
+  <td><%= link_to 'Delete', staff_path(staff) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
+</tr>
+
+<!-- Edit Staff Modal -->
+<div class="modal fade" id="editstaff-<%= staff.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Eployee Details</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors-<%= staff.id %>"></div>
+          <div class="container">
+            <div class="row justify-content-center mt-4 ">
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header">
+                    <h1>Edit Employee Details</h1>
+                  </div>
+                  <div class="card-body">
+                    <%= form_with(model: staff, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
+                      <div class="form-group">
+                        <%= f.label :Name %> <br/>
+                        <%= f.text_field :name,class: 'form-control'%>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :Email %> <br/>
+                        <%= f.text_field :email , class: 'form-control'%>
+                      </div>
+                      <div class="form-group"> 
+                        <%= f.label :Phonenumber %> <br/>
+                        <%= f.text_field :phonenumber , class: 'form-control' %>
+                      </div>
+                      <div class="field">    
+                        <%= f.label :gender %></br>
+                        <span class="option">Male<span><%= f.radio_button :gender, "Male" %></br>
+                        <span class="option">Female<span><%= f.radio_button :gender, "Female" %></br>
+                        <span class="option">Others<span><%= f.radio_button :gender, "Others" %></br>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :Age%> <br/>
+                        <%= f.text_field :age %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label :Date_of_birth %> <br/>
+                        <%= f.text_field :date_of_birth %>
+                      </div>
+                      <div class="form-group"> 
+                        <%= f.label :Address %> <br/>
+                        <%= f.text_area :address, class: 'form-control' %>
+                      </div>
+                      <div class="card-footer text-muted">
+                        <%= f.submit 'Update Staff', class: 'btn btn-primary' %>
+                        <%= link_to 'Back', staffs_path, class: 'btn btn-secondary' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

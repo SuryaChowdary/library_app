@@ -12,28 +12,35 @@
       <th colspan="3"> Actions </th>
     </tr>
   </thead>
-    <tbody>
+    <tbody id="staff-table">
       <% @staffs.each do |staff| %>
-        <tr>
-      <td><%= staff.name %></td>
-      <td colspan=1><%= staff.email %></td>
-      <td ><%= staff.phonenumber %></td>
-      <td><%= staff.gender %></td>
-      <td><%= staff.age %></td>
-      <td><%= staff.date_of_birth%></td>
-      <td><%= staff.address%></td>
-      <td><%= link_to 'Show', staff_path(staff), class: 'btn btn-info' %></td>
-      <td><%= link_to 'Edit', edit_staff_path(staff), class: 'btn btn-primary' %></td>
-      <td><%= link_to 'Delete', staff_path(staff) , method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
-        </tr>
+        <%= render 'staff' , staff: staff%>
       <% end %>
     </tbody>
 </table>
 
-<p>
-  <%= link_to 'Add new Employee' , new_staff_path, class: 'btn btn-primary' %>
-</p>
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Employee
+</button>
+<!-- Add Staff Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Employee</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="newerrors"></div>
+        <%= render 'form'%>
+      </div>
+    </div>
+  </div>
+</div> 
 
 <p>
-  <%= link_to 'Home' , root_path, class: 'btn btn-warning' %>
+  <%= link_to 'Home' , root_path, class: 'btn btn-warning mt-2' %>
 </p>

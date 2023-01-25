@@ -14,11 +14,15 @@ class StaffsController < ApplicationController
   def create 
     @staff=Staff.new(staff_params)
     if @staff.save
-      flash[:notice] = "Staff details are added successfully"
-      redirect_to  staffs_path(@staff)
-    else 
-      render 'new'
-    end
+      respond_to do|format|
+        format.html {redirect_to staffs_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
+    else
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end
 
   def show
@@ -26,21 +30,31 @@ class StaffsController < ApplicationController
   end
 
   def edit
-    
+    respond_to do |format|
+      format.html
+      format.js 
+    end
   end
 
   def update
     if @staff.update(staff_params)
-      flash[:notice] = "Edited details Successfully"
-      redirect_to  @staff
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @staff, notice: 'Employee details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
 
   def destroy
     @staff.destroy
-    redirect_to staffs_path
+    respond_to do |format|
+      format.html { redirect_to staffs_url, notice: 'Employee was successfully deleted.' }
+      format.js  
+    end
   end
 
   private
