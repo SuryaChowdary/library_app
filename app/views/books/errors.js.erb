@@ -1,0 +1,7 @@
+<% if @book.errors.any? %>
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'books/errors', book: @book) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @book.id %>").html("<%= j(render 'books/errors', book: @book) %>");
+  <% end %> 
+<% end %>

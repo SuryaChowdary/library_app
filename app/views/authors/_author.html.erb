@@ -1,0 +1,102 @@
+<tr id="author-<%= author.id%>">
+  <td><%= author.name %></td>
+  <td><%= author.gender %></td>
+  <td><%= author.age %></td>
+  <td><%= author.date_of_birth%></td>
+  <td><%= author.address%></td>
+  <td><%= link_to 'Show', author_path(author), class: 'btn btn-info', data:{remote: true, bs_toggle: "modal", bs_target: "#showauthor-#{author.id}"} %></td>
+  <td><%= link_to 'Edit', edit_author_path(author), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target:"#editauthor-#{author.id}"} %></td>
+  <td><%= link_to 'Delete', author_path(author) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class:'btn btn-danger'%></td>
+</tr>
+
+<!-- Edit Company Modal -->
+<div class="modal fade" id="editauthor-<%= author.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Author Details</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors-<%= author.id %>"></div>
+        <div class="container">
+          <div class="row justify-content-center mt-4 ">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">Edit Author Details</div>
+                <div class="card-body">
+                  <%= form_with(model: author, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
+                     <div class="form-group"> 
+                      <%= f.label :Name %> <br/>
+                      <%= f.text_field :name, class: 'form-control' %>
+                    </div>
+                    <div class="form-group">    
+                      <%= f.label :Gender %></br>
+                      <span class="option">Male<span><%= f.radio_button :gender, "Male" %></br>
+                      <span class="option">Female<span><%= f.radio_button :gender, "Female" %></br>
+                      <span class="option">Others<span><%= f.radio_button :gender, "Others" %></br>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :Age%> <br/>
+                      <%= f.text_field :age, class: 'form-control' %>
+                    </div>
+                    <div class="form-group"> 
+                      <%= f.label :Date_of_birth %> <br/>
+                      <%= f.text_field :date_of_birth, class: 'form-control'%>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :Address %> <br/>
+                      <%= f.text_field :address, class: 'form-control' %>
+                    </div>
+                    <div class="card-footer text-muted">
+                      <%= f.submit " Update author", class: 'btn btn-primary'%>
+                      <%= link_to 'Back', authors_path, class: 'btn btn-secondary' %>          
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- author Show page modal -->
+<div class="modal fade" id="showauthor-<%= author.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Author Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="container mt-5">
+        <div class="card">
+          <div class="card-header"> 
+            <h1 class="card-title"> Author Name : <%= author.name %></h1>
+          </div>
+          <div class="card-body">
+            <h2 class="card-subtitle mb-2 text-muted">Age: <%= author.age %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Gender: <%= author.gender %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Date of Birth: <%= author.date_of_birth %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Address : <%= author.address%></h2>
+            <% if author.books.any? %>
+              <h2 class="card-subtitle mb-2 text-muted"> List of books of <%= author.name %></h2>
+              <% author.books.each do |book| %>
+                <ul>
+                  <h2 class="card-subtitle mb-2 text-muted"><%= book.title %></h2>
+                </ul>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', authors_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

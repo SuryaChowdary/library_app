@@ -15,11 +15,15 @@ class BooksController < ApplicationController
   def create 
     @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "Book is added successfully"
-    redirect_to  books_path(@book)
-    else 
-      render 'new'
-    end
+      respond_to do|format|
+        format.html {redirect_to books_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
+    else
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end 
 
   def show 
@@ -32,16 +36,23 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      flash[:notice] = "Edited Successfully"
-      redirect_to  books_path(@book)
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @book, notice: 'Book details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
     
   def destroy
     @book.destroy
-    redirect_to books_path
+    respond_to do |format|
+      format.html
+      format.js 
+    end
   end 
 
   private

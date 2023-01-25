@@ -1,0 +1,7 @@
+<% if @author.errors.any? %>
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'authors/errors', author: @author) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @author.id %>").html("<%= j(render 'authors/errors', author: @author) %>");
+  <% end %> 
+<% end %>

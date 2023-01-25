@@ -1,0 +1,43 @@
+<!-- Add Books form -->
+<div class="container">
+  <div class="row justify-content-center mt-4 ">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Add New Book</div>
+        <div class="card-body">
+          <%= form_with scope: :book, url: books_path, data: {remote: true} do |f| %>
+            <div class="form-group"> 
+              <%= f.label :Title %> <br/>
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Authors%> <br/>
+              <%= f.select :author_id, Author.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
+            </div>
+            <div class="form-group"> 
+              <%= f.label :Pages %> <br/>
+              <%= f.text_field :pages, class: 'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= f.label :Published_on %> <br/>
+              <%= f.text_field :date_of_publication, class: 'form-control' %>
+            </div>
+            <div class="form-group">    
+              <%= f.label :Rent %></br>
+              <span class="option">Yes<span><%= f.radio_button :rent, "Yes" %></br>
+              <span class="option">No<span><%= f.radio_button :rent, "No" %></br>
+            </div>
+            <div class="form-group"> 
+              <%= f.label :Summary %> <br/>
+              <%= f.text_area :summary, class: 'form-control' %>
+            </div>
+            <div class="card-footer text-muted">
+              <%= f.submit "Add Company", class: 'btn btn-primary' %>
+              <%= link_to 'Back' , companies_path, class:'btn btn-secondary' %>
+            </div>
+          <% end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

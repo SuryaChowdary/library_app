@@ -14,11 +14,15 @@ class AuthorsController < ApplicationController
   def create 
     @author=Author.new(author_params)
     if @author.save
-      flash[:notice] = "Author details are added successfully"
-      redirect_to  authors_path(@author)
-    else 
-      render 'new'
-    end
+      respond_to do|format|
+        format.html {redirect_to authors_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
+    else
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end
 
   def show
@@ -31,16 +35,23 @@ class AuthorsController < ApplicationController
 
   def update
     if @author.update(author_params)
-      flash[:notice] = "Edited details Successfully"
-      redirect_to  @author
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @author, notice: 'Author details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
 
   def destroy
     @author.destroy
-    redirect_to authors_path
+    respond_to do|format|
+      format.html
+      format.js
+    end
   end
 
   private

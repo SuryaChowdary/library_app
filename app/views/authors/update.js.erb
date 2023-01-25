@@ -1,0 +1,2 @@
+$("#author-<%= @author.id %>").replaceWith("<%= j render partial: 'author', locals: {author: @author} %>");
+$("#editauthor-<%=@author.id%>").modal('hide');

@@ -11,27 +11,36 @@
       <th colspan="3"> Actions </th>
     </tr>
   </thead>
-    <tbody>
+    <tbody id="book-table">
       <% @books.each do |book| %>
-        <tr>
-      <td><%= book.title %></td>
-      <td><%= book.author.name if book.author %>
-      <td><%= book.pages %></td>
-      <td><%= book.date_of_publication %></td>
-      <td><%= book.summary %></td>
-      <td><%= book.rent%></td>
-      <td><%= link_to 'Show', book_path(book), class: 'btn btn-info' %></td>
-      <td><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-primary' %></td>
-      <td><%= link_to 'Delete', book_path(book) , method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %></td>
-        </tr>
+        <%= render 'book' , book: book %>
       <% end %>
     </tbody>
 </table>
 
-<p>
-  <%= link_to 'Add new Book' , new_book_path, class: 'btn btn-primary' %>
-</p>
+<!-- Button trigger modal -->
+<button type="button", class="btn btn-primary", data-bs-toggle="modal", data-bs-target="#newModal">
+  Add New Book
+</button>
+<!-- Add Book Modal -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add new Book</h5>
+        <button type="button" id= "closeNewForm" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="newerrors"></div>
+        <%= render 'form'%>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <p>
-  <%= link_to 'Home' , root_path, class: 'btn btn-warning' %>
+  <%= link_to 'Home' , root_path, class: 'btn btn-warning mt-4' %>
 </p>

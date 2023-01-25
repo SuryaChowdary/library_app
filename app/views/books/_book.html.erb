@@ -1,0 +1,99 @@
+<tr id="book-<%= book.id %>">
+  <td><%= book.title %></td>
+  <td><%= book.author.name if book.author %>
+  <td><%= book.pages %></td>
+  <td><%= book.date_of_publication %></td>
+  <td><%= book.summary %></td>
+  <td><%= book.rent%></td>
+  <td><%= link_to 'Show', book_path(book), class: 'btn btn-info', data:{remote: true, bs_toggle: "modal", bs_target:"#showbook-#{book.id}"} %></td>
+  <td><%= link_to 'Edit', edit_book_path(book), class: 'btn btn-primary', data:{remote: true, bs_toggle: "modal", bs_target: "#editbook-#{book.id}"} %></td>
+  <td><%= link_to 'Delete', book_path(book) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger' %></td>
+</tr>
+
+<!-- Edit Company Modal -->
+<div class="modal fade" id="editbook-<%= book.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Book Details</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors-<%= book.id %>"></div>
+        <div class="container">
+          <div class="row justify-content-center mt-4 ">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">Edit Book Details</div>
+                <div class="card-body">
+                  <%= form_with(model: book, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
+                   <div class="form-group"> 
+                    <%= f.label :Title %> <br/>
+                    <%= f.text_field :title, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :Authors%> <br/>
+                    <%= f.select :author_id, Author.all.collect {|x| [x.name, x.id]}, {}, class: 'form-control' %>
+                  </div>
+                  <div class="form-group"> 
+                    <%= f.label :Pages %> <br/>
+                    <%= f.text_field :pages, class: 'form-control'%>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :Published_on %> <br/>
+                    <%= f.text_field :date_of_publication, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">    
+                    <%= f.label :Rent %></br>
+                    <span class="option">Yes<span><%= f.radio_button :rent, "Yes" %></br>
+                    <span class="option">No<span><%= f.radio_button :rent, "No" %></br>
+                  </div>
+                  <div class="form-group"> 
+                    <%= f.label :Summary %> <br/>
+                    <%= f.text_area :summary, class: 'form-control' %>
+                  </div>
+                    <div class="card-footer text-muted">
+                      <%= f.submit " Update Book", class: 'btn btn-primary'%>
+                      <%= link_to 'Back', books_path, class: 'btn btn-secondary' %>          
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Book Show page modal -->
+<div class="modal fade" id="showbook-<%= book.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Book Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="container mt-5">
+        <div class="card">
+          <div class="card-header"> 
+            <h1 class="card-title"> Book Name :<%= book.title %></h1>
+          </div>
+          <div class="card-body">
+            <h2 class="card-subtitle mb-2 text-muted">Author: <%= book.author.name if book.author %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Pages: <%= book.pages %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Date of Publication: <%= book.date_of_publication %></h2>
+            <h2 class="card-subtitle mb-2 text-muted">Rent Availability : <%= book.rent %></h2>
+            <h2 class="card-subtitle mb-2 text-muted"> Summary: <%= book.summary %></h2>
+          </div>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
