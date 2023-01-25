@@ -1,0 +1,2 @@
+$("#region-<%= @region.id %>").replaceWith("<%= j render partial: 'region', locals: {region: @region} %>");
+$("#editregion-<%=@region.id%>").modal('hide');

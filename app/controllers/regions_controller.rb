@@ -14,11 +14,15 @@ class RegionsController < ApplicationController
   def create
     @region=Region.new(region_params)
     if @region.save
-      flash[:notice]="Region was added successfully"
-      redirect_to regions_path(@region)
+      respond_to do|format|
+        format.html {redirect_to regions_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
     else
-      render 'new'
-    end
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end
 
   def show
@@ -30,17 +34,23 @@ class RegionsController < ApplicationController
   def update
     @region = Region.find(params[:id])
     if @region.update(region_params)
-    flash[:notice] = "Region was updated successfully"
-      redirect_to @region
+      respond_to do |format|
+        format.html { redirect_to @region, notice: 'Region details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
     else
-      render 'edit'
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end
   end
 
   def destroy
     @region.destroy
-    flash[:notice] = "Region was deleted Successfully"
-    redirect_to regions_path 
+    respond_to do |format|
+      format.html { redirect_to regions_url, notice: 'Region details was successfully deleted.' }
+      format.js  
+    end
   end
 
   private
