@@ -1,5 +1,5 @@
-<h1> List of all Locations of</h1>
-<table>
+<h1> List of all Locations</h1>
+<table class="table">
   <thead>
     <tr>
       <th> Places </th>
@@ -7,21 +7,21 @@
     </tr>
   </thead>
     <tbody>
-      <% @location.each do |location| %>
+      <% @locations.each do |location| %>
         <tr>
       <td><%= location.place %></td>
-      <td><%= link_to 'Show', location_path(location) %></td>
-      <td><%= link_to 'Edit', edit_location_path(location) %></td>
-      <td><%= link_to 'Delete', location_path(location) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+      <td><%= link_to 'Show', location_path(location), class: 'btn btn-info' %></td>
+      <td><%= link_to 'Edit', edit_location_path(location), class: 'btn btn-primary'%></td>
+      <td><%= link_to 'Delete', location_path(location) , method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
         </tr>
       <% end %>
     </tbody>
 </table>
 
 <p>
-  <%= link_to 'Add new Location' , new_location_path %>
+  <%= link_to 'Add new Location' , new_location_path , class: 'btn btn-primary' %>
 </p>
 
 <p>
-  <%= link_to 'Home' , root_path %>
+  <%= link_to 'Home' , root_path, class: 'btn btn-secondary' %>
 </p>

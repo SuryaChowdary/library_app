@@ -4,7 +4,7 @@ class LibrariesController < ApplicationController
   before_action :require_user
 
   def index
-    @library = Library.all
+    @libraries = Library.all
   end
 
   def new

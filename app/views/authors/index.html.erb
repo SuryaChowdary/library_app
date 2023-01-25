@@ -1,5 +1,5 @@
 <h1> List of all Authors in Library</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th> Name </th>
@@ -11,25 +11,25 @@
     </tr>
   </thead>
     <tbody>
-      <% @author.each do |author| %>
+      <% @authors.each do |author| %>
         <tr>
       <td><%= author.name %></td>
       <td><%= author.gender %></td>
       <td><%= author.age %></td>
       <td><%= author.date_of_birth%></td>
       <td><%= author.address%></td>
-      <td><%= link_to 'Show', author_path(author) %></td>
-      <td><%= link_to 'Edit', edit_author_path(author) %></td>
-      <td><%= link_to 'Delete', author_path(author) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+      <td><%= link_to 'Show', author_path(author), class: 'btn btn-info' %></td>
+      <td><%= link_to 'Edit', edit_author_path(author), class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', author_path(author) , method: :delete , data: {confirm: "Are you sure?"}, class:'btn btn-danger'%></td>
         </tr>
       <% end %>
     </tbody>
 </table>
 
 <p>
-  <%= link_to 'Add new Author' , new_author_path %>
+  <%= link_to 'Add new Author' , new_author_path, class: 'btn btn-primary' %>
 </p>
 
 <p>
-  <%= link_to 'Home' , root_path %>
+  <%= link_to 'Home' , root_path, class: 'btn btn-warning' %>
 </p>

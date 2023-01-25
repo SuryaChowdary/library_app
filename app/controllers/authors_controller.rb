@@ -4,7 +4,7 @@ class AuthorsController < ApplicationController
   before_action :require_user
 
   def index 
-    @author = Author.all
+    @authors = Author.all
   end 
 
   def new 

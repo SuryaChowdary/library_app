@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :require_user
 
   def index 
-    @book = Book.all
+    @books = Book.all
     @authors = Author.all
   end 
   

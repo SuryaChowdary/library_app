@@ -4,7 +4,7 @@ class StaffsController < ApplicationController
   before_action :require_user
 
   def index 
-    @staff = Staff.all
+    @staffs = Staff.all
   end 
 
   def new 

@@ -1,5 +1,5 @@
 <h1> List of all Regions</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th> Name </th>
@@ -8,20 +8,20 @@
     <tr>
   </thead>
     <tbody>
-      <% @region.each do |region| %>
+      <% @regions.each do |region| %>
         <tr>
       <td><%= region.name %></td>
-      <td><%= link_to 'Show', region_path(region) %></td>
-      <td><%= link_to 'Edit', edit_region_path(region) %></td>
-      <td><%= link_to 'Delete', region_path(region) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+      <td><%= link_to 'Show', region_path(region), class: 'btn btn-info' %></td>
+      <td><%= link_to 'Edit', edit_region_path(region), class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', region_path(region) , method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
         </tr>
       <% end %>
       
     </tbody>
 </table>
 
-<p><%= link_to 'Add new region' , new_region_path %></p>
+<p><%= link_to 'Add new region' , new_region_path , class: 'btn btn-primary'%></p>
 
-<p><%= link_to 'Back' , companies_path%></p>
+<p><%= link_to 'Back' , companies_path , class: 'btn btn-secondary'%></p>
 
-<p><%= link_to 'Home' , root_path %></p>
+<p><%= link_to 'Home' , root_path, class: 'btn btn-warning' %></p>

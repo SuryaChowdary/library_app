@@ -17,11 +17,33 @@
           <li class="nav-item">
             <%= link_to 'Profiles', users_path, class: "nav-link" %>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Libraries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#"><%= link_to 'Books' , books_path, class: "nav-link"%></a>
+              <a class="dropdown-item" href="#"><%= link_to 'Authors' , authors_path, class: "nav-link"%></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><%= link_to 'Staff' , staffs_path, class: "nav-link"%></a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Locations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#"><%= link_to 'Regions' , regions_path, class: "nav-link"%></a>
+              <a class="dropdown-item" href="#"><%= link_to 'Locations' , locations_path, class: "nav-link"%></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><%= link_to 'Staff' , staffs_path, class: "nav-link"%></a>
+            </div>
+          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to 'Log in', login_path, class: "nav-link" %>
           </li>
-        <% end %>
+        <% end %> 
     </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

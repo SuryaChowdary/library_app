@@ -1,5 +1,5 @@
 <h1> List of all Companies </h1>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th> Name </th>
@@ -8,12 +8,12 @@
     <tr>
   </thead>
     <tbody>
-      <% @company.each do |company| %>
+      <% @companies.each do |company| %>
         <tr>
       <td><%= company.name %></td>
-      <td><%= link_to 'Show', company_path(company) %></td>
-      <td><%= link_to 'Edit', edit_company_path(company) %></td>
-      <td><%= link_to 'Delete', company_path(company) , method: :delete , data: {confirm: "Are you sure?"}%></td>
+      <td><%= link_to 'Show', company_path(company), class: 'btn btn-info' %></td>
+      <td><%= link_to 'Edit', edit_company_path(company), class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', company_path(company) , method: :delete , data: {confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
         </tr>
       <% end %>
       
@@ -21,10 +21,10 @@
 </table>
 
 <p>
-  <%= link_to 'Add new Company' , new_company_path %>
+  <%= link_to 'Add new Company' , new_company_path, class: 'btn btn-primary'%>
 </p>
 
-<p><%= link_to "View Regions" , regions_path%>
+<p><%= link_to "View Regions" , regions_path, class: 'btn btn-info'%>
 <p>
-  <%= link_to 'Home' , root_path %>
+  <%= link_to 'Home' , root_path, class: 'btn btn-warning'%>
 </p>

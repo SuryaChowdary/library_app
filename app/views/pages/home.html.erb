@@ -4,8 +4,10 @@
       <h1 class="display-4">
        <strong>Library Application</strong>
       </h1>
-      <p class="lead">
-      <p><%= link_to 'Sign Up' , signup_path, class: 'btn btn-success btn-lg' %></p>
+      <% if !logged_in?%>
+        <p class="lead">
+        <p><%= link_to 'Sign Up' , signup_path, class: 'btn btn-success btn-lg' %></p>
+      <% end %>
     </div>
   </div>
 </div>

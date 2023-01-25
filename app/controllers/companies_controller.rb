@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
   before_action :require_user 
 
   def index 
-    @company = Company.all
+    @companies = Company.all
   end 
   
   def new 
