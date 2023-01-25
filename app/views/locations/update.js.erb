@@ -1,0 +1,2 @@
+$("#location-<%= @location.id %>").replaceWith("<%= j render partial: 'location', locals: {location: @location} %>");
+$("#editlocation-<%=@location.id%>").modal('hide');

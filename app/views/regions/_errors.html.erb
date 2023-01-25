@@ -1,8 +1,10 @@
 <% if @region.errors.any? %>
-  <h2> The following reasons prevented the region details to be saved </h2>
+<div id="error_explanation">
+  <h2><%= pluralize(@region.errors.count, "error") %> prohibited this Region from being saved:</h2>
   <ul>
-    <%= @region.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+    <% @region.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
   </ul>
-<% end%>
+</div>
+<% end %>

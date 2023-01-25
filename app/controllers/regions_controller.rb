@@ -32,7 +32,6 @@ class RegionsController < ApplicationController
   end
 
   def update
-    @region = Region.find(params[:id])
     if @region.update(region_params)
       respond_to do |format|
         format.html { redirect_to @region, notice: 'Region details was successfully updated.' }

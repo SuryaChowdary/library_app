@@ -14,11 +14,15 @@ class LocationsController < ApplicationController
   def create 
     @location = Location.new(location_params)
     if @location.save
-      flash[:notice] = "location is added successfully"
-    redirect_to  locations_path(@location)
+      respond_to do|format|
+        format.html {redirect_to locations_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
     else
-       render 'new'
-    end
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end 
   
   def show 
@@ -31,16 +35,23 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update(location_params)
-      flash[:notice] = " Location name Edited Successfully"
-      redirect_to  locations_path(@location)
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @location, notice: 'Region details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
     
   def destroy
     @location.destroy
-    redirect_to locations_path
+    respond_to do |format|
+      format.html
+      format.js
+    end 
   end 
 
   private
