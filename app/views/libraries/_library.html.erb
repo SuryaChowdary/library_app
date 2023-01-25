@@ -1,0 +1,73 @@
+ <tr id="library-<%= library.id %>">
+  <td><%= library.name %></td>
+  <td><%= link_to 'Show', library_path(library), class: 'btn btn-info', data:{remote: true, bs_toggle:"modal", bs_target:"#showlibrary-#{library.id}"} %></td>
+  <td><%= link_to 'Edit', edit_library_path(library), class: 'btn btn-primary', data: {remote: true, bs_toggle:"modal", bs_target: "#editlibrary-#{library.id}"} %></td>
+  <td><%= link_to 'Delete', library_path(library) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
+</tr>
+
+<!-- Edit Library Modal -->
+<div class="modal fade" id="editlibrary-<%= library.id %>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Library Details</h5>
+        <button type="button" class="closeEditForm" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="editerrors-<%= library.id %>"></div>
+        <div class="container">
+          <div class="row justify-content-center mt-4 ">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header">Edit Library Details</div>
+                <div class="card-body">
+                  <%= form_with(model: library, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
+                    <div class="form-group"> 
+                      <%= f.label :Name %> <br/>
+                      <%= f.text_field :name, class: 'form-control' %>
+                    </div>
+                    <div class="form-group"> 
+                      <%= f.label :Company %> <br/>
+                      <%= f.select :company_id, Company.all.collect {|x| [x.name, x.id]}, {} , class: 'form-control' %>
+                    </div>
+                    <div class="card-footer text-muted">
+                      <%= f.submit " Update Library", class: 'btn btn-primary'%>
+                      <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>          
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Library Show page modal -->
+<div class="modal fade" id="showlibrary-<%= library.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Library Details</h4>
+        <button type="button" id= "closeShowForm" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="container mt-5">
+        <div class="card">
+          <div class="card-header"> 
+            <h1 class="card-title"> Library Name :<%= library.name %></h1>
+          </div>
+          <div class= "card-body">
+              <%= link_to "View Books", books_path, class: 'btn btn-primary'%>
+            </div>
+          <div class="card-footer text-muted">
+            <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

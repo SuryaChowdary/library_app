@@ -1,0 +1,7 @@
+<% if @library.errors.any? %>
+  <% if params[:action] == "create" %>
+    $("#newerrors").html("<%= j(render 'libraries/errors', library: @library) %>");
+  <% elsif params[:action] == "update" %>
+    $("#editerrors-<%= @library.id %>").html("<%= j(render 'libraries/errors', library: @library) %>");
+  <% end %> 
+<% end %>

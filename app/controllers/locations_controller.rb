@@ -36,7 +36,7 @@ class LocationsController < ApplicationController
   def update
     if @location.update(location_params)
       respond_to do |format|
-        format.html { redirect_to @location, notice: 'Region details was successfully updated.' }
+        format.html { redirect_to @location, notice: 'Location details was successfully updated.' }
         format.js { render :content_type => 'application/javascript' }
       end
     else

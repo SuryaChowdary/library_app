@@ -1,0 +1,2 @@
+$("#company-<%= @company.id %>").replaceWith("<%= j render partial: 'company', locals: {company: @company} %>");
+$("#editcompany-<%=@company.id%>").modal('hide');

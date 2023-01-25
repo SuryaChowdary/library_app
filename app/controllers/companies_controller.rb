@@ -14,11 +14,15 @@ class CompaniesController < ApplicationController
   def create 
     @company = Company.new(company_params)
     if @company.save
-      flash[:notice] = "Library branch is added successfully"
-      redirect_to  companies_path(@company)
-    else 
-      render 'new'
-    end
+      respond_to do|format|
+        format.html {redirect_to companies_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
+    else
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end 
 
   def show 
@@ -31,16 +35,23 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      flash[:notice] = "Libray Branch name Edited Successfully"
-      redirect_to  companies_path(@company)
-    else 
-      render 'edit'
+      respond_to do |format|
+        format.html { redirect_to @company, notice: 'Company details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
+    else
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
     end 
   end
 
   def destroy
     @company.destroy
-    redirect_to companies_path
+    respond_to do|format|
+      format.html
+      format.js
+    end
   end
   
   private

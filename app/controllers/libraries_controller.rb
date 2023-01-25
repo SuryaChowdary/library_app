@@ -14,11 +14,15 @@ class LibrariesController < ApplicationController
   def create
     @library=Library.new(library_params)
     if @library.save
-      flash[:notice]="Library was added successfully"
-      redirect_to libraries_path(@library)
+      respond_to do|format|
+        format.html {redirect_to libraries_path}
+        format.js {render :content_type => 'application/javascript'}
+      end
     else
-      render 'new'
-    end
+      respond_to do|format|
+        format.js {render 'errors'}
+      end
+    end 
   end
 
   def show
@@ -29,17 +33,23 @@ class LibrariesController < ApplicationController
 
   def update
     if @library.update(library_params)
-    flash[:notice] = "Library was updated successfully"
-      redirect_to @library
+      respond_to do |format|
+        format.html { redirect_to @library, notice: 'Library details was successfully updated.' }
+        format.js { render :content_type => 'application/javascript' }
+      end
     else
-      render 'edit'
-    end
+      respond_to do |format|
+        format.js { render 'errors' }
+      end
+    end 
   end
 
   def destroy
     @library.destroy
-    flash[:notice] = "Library was deleted Successfully"
-    redirect_to libraries_path 
+    respond_to do |format|
+      format.html
+      format.js
+    end 
   end
 
   private
