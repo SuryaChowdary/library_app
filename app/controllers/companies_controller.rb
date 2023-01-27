@@ -53,6 +53,13 @@ class CompaniesController < ApplicationController
       format.js
     end
   end
+
+  def locations_by_region
+    @locations = Location.where(region_id: params[:regions])
+    respond_to do |format|
+      format.js { render :locations_by_region }
+    end
+  end
   
   private
 
@@ -61,6 +68,6 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name , location_ids: [])
+    params.require(:company).permit(:name , region_ids: [],  location_ids: [])
   end
 end

@@ -10,9 +10,13 @@
               <%= f.label :Name %> <br/>
               <%= f.text_field :name, class: 'form-control' %>
             </div>
-            <div class="form-group"> 
-              <%= f.label :Location %> <br/>
-              <%= f.select :location_id, Location.all.collect {|x| [x.place, x.id]}, {} , class: 'form-control' %>
+            <div class="form-group">
+              <%= f.label :Region %>
+              <%= f.select :region_ids, options_from_collection_for_select(Region.all, :id, :name),  {include_hidden: false}, {:multiple => true, :class=>"form-control",id: "region"} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :Location %>
+               <%= f.select :location_ids, options_for_select([["Select Locations"]]), {include_hidden: false}, {class: "form-control" ,id: "location_ids" , multiple: true} %>     
             </div>
             <div class="card-footer text-muted">
               <%= f.submit "Add Company", class: 'btn btn-primary' %>

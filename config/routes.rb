@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :locations
   resources :libraries
   resources :regions
+  get '/locations_by_region', to: 'companies#locations_by_region', as: 'locations_by_region'
 end
