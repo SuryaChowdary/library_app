@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                       <%= f.label :Location %>
-                      <%= f.collection_select(:location_ids, Location.where(region_id: company.regions.pluck(:id)), :id, :place, {include_blank: "Select Locations"}, {multiple: true, class: "form-control", id: "location-#{company.id}"}) %>
+                      <%= f.collection_select(:location_ids, Location.where(region_id: company.regions.pluck(:id)), :id, :name, {include_blank: "Select Locations"}, {multiple: true, class: "form-control", id: "location-#{company.id}"}) %>
                     </div>
                     <div class="card-footer text-muted">
                       <%= f.submit " Update company", class: 'btn btn-primary'%>
@@ -89,7 +89,7 @@
             <h2 class="card-subtitle mb-2 text-muted"> List of all locations of <%= company.name %>
             <% company.locations.each do |location| %>
               <li>
-                <%= location.place %>
+                <%= location.name %>
               </li>
             <% end %>
           <% end %>

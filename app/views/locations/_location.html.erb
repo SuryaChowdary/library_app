@@ -1,5 +1,5 @@
 <tr id="location-<%= location.id %>">
-  <td><%= location.place %></td>
+  <td><%= location.name %></td>
   <td><%= link_to 'Show', location_path(location), class: 'btn btn-info', data:{remote: true, bs_toggle: "modal", bs_target: "#showlocation-#{location.id}"} %></td>
   <td><%= link_to 'Edit', edit_location_path(location), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editlocation-#{location.id}" } %></td>
   <td><%= link_to 'Delete', location_path(location) , method: :delete , data: {remote: true , confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
@@ -26,7 +26,7 @@
                   <%= form_with(model: location, data: { remote: true}, method: :patch, id: 'edit-form' ) do |f| %>
                     <div class="form-group"> 
                       <%= f.label :Name %> <br/>
-                      <%= f.text_field :place, class: 'form-control' %>
+                      <%= f.text_field :name, class: 'form-control' %>
                     </div>
                     <div class="form-group"> 
                       <%= f.label :Region %> <br/>
@@ -58,11 +58,11 @@
       <div class="container mt-5">
         <div class="card">
           <div class="card-header"> 
-            <h1 class="card-title"> Location Name :<%= location.place %></h1>
+            <h1 class="card-title"> Location Name :<%= location.name %></h1>
           </div>
           <div class= "card-body">
               <% if location.companies.any? %>
-                <h2 class="card-subtitle mb-2 text-muted"> List of all companies in <%= location.place %>
+                <h2 class="card-subtitle mb-2 text-muted"> List of all companies in <%= location.name %>
                 <% location.companies.each do |company| %>
                   <li>
                     <%= company.name %>

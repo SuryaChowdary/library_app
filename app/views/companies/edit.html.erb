@@ -9,7 +9,7 @@
 
   <p> 
     <%= f.label :Locations %> <br/>
-    <%= f.select :location_ids, Location.all.collect {|x| [x.place, x.id]}, {}, :multiple => true %>
+    <%= f.select :location_ids, Location.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </p>
 
   <p>
