@@ -1,6 +1,8 @@
 <tr id="company-<%= company.id %>">
   <td><%= company.name %></td>
+  <!-- Button trigger for company show modal-->
   <td><%= link_to 'Show', company_path(company), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target: "#showcompany-#{company.id}"} %></td>
+  <!-- Button trigger for edit company modal -->
   <td><%= link_to 'Edit', edit_company_path(company), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editcompany-#{company.id}" } %></td>
   <td><%= link_to 'Delete', company_path(company) , method: :delete , data: { remote: true,confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
 </tr>
@@ -93,9 +95,6 @@
               </li>
             <% end %>
           <% end %>
-          <div class= "card-body">
-              <%= link_to "View Books", books_path, class: 'btn btn-primary'%>
-            </div>
           <div class="card-footer text-muted">
             <%= link_to 'Back', libraries_path, class: 'btn btn-secondary' %>
           </div>

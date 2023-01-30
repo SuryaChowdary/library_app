@@ -1,6 +1,8 @@
  <tr id="library-<%= library.id %>">
   <td><%= library.name %></td>
+  <!-- Button trigger for show library modal -->
   <td><%= link_to 'Show', library_path(library), class: 'btn btn-info', data:{remote: true, bs_toggle:"modal", bs_target:"#showlibrary-#{library.id}"} %></td>
+  <!-- Button trigger for edit library modal -->
   <td><%= link_to 'Edit', edit_library_path(library), class: 'btn btn-primary', data: {remote: true, bs_toggle:"modal", bs_target: "#editlibrary-#{library.id}"} %></td>
   <td><%= link_to 'Delete', library_path(library) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
 </tr>

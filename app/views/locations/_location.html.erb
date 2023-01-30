@@ -1,6 +1,8 @@
 <tr id="location-<%= location.id %>">
   <td><%= location.name %></td>
+  <!-- Button trigger for show location modal -->
   <td><%= link_to 'Show', location_path(location), class: 'btn btn-info', data:{remote: true, bs_toggle: "modal", bs_target: "#showlocation-#{location.id}"} %></td>
+  <!-- Button trigger for edit location modal -->
   <td><%= link_to 'Edit', edit_location_path(location), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editlocation-#{location.id}" } %></td>
   <td><%= link_to 'Delete', location_path(location) , method: :delete , data: {remote: true , confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
 </tr>

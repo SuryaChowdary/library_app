@@ -3,14 +3,17 @@ class RegionsController < ApplicationController
   before_action :set_region, only: [:show, :edit, :update, :destroy]
   before_action :require_user
 
+  # Display list of all regions
   def index
     @regions = Region.all
   end
 
+  # Add new Region
   def new
     @region = Region.new
   end 
 
+  # Save new Region
   def create
     @region=Region.new(region_params)
     if @region.save
@@ -25,12 +28,15 @@ class RegionsController < ApplicationController
     end 
   end
 
+  # Show specific region details
   def show
   end
 
+  # Edit specific region details
   def edit
   end
 
+  # Update specific region details
   def update
     if @region.update(region_params)
       respond_to do |format|
@@ -44,6 +50,7 @@ class RegionsController < ApplicationController
     end
   end
 
+  # Delete specific region
   def destroy
     @region.destroy
     respond_to do |format|
@@ -54,10 +61,12 @@ class RegionsController < ApplicationController
 
   private
   
+  # private method to find region with its id
   def set_region
     @region = Region.find(params[:id])
   end
 
+  #private method to pass parameters for adding and updating regions
   def region_params
     params.require(:region).permit(:name)
   end

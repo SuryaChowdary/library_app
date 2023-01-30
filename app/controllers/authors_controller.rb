@@ -3,14 +3,21 @@ class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit,:update, :destroy]
   before_action :require_user
 
+  # Display list of all authors
   def index 
     @authors = Author.all
   end 
 
+  # Show specific author details
+  def show
+  end
+
+  # Add new Author
   def new 
     @author = Author.new
   end 
 
+  # Save new Author
   def create 
     @author=Author.new(author_params)
     if @author.save
@@ -25,14 +32,11 @@ class AuthorsController < ApplicationController
     end 
   end
 
-  def show
-
-  end
-
+  # Edit specific author
   def edit
-
   end 
 
+  # Update specific author details
   def update
     if @author.update(author_params)
       respond_to do |format|
@@ -46,6 +50,7 @@ class AuthorsController < ApplicationController
     end 
   end
 
+  # Delete specific author
   def destroy
     @author.destroy
     respond_to do|format|
@@ -56,10 +61,12 @@ class AuthorsController < ApplicationController
 
   private
 
+  # private method to find author with their id
   def set_author
     @author = Author.find(params[:id])
   end
 
+  # private method to pass parameters to add and edit author details
   def author_params
     params.require(:author).permit(:name, :gender , :age , :date_of_birth, :address , topic: [])
   end

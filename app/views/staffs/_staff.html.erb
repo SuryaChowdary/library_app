@@ -6,7 +6,9 @@
   <td><%= staff.age %></td>
   <td><%= staff.date_of_birth%></td>
   <td><%= staff.address%></td>
+  <!-- Button Trigger for show staff modal -->
   <td><%= link_to 'Show', staff_path(staff), class: 'btn btn-info', data:{ remote: true, bs_toggle: "modal", bs_target: "#showstaff-#{staff.id}"} %></td>
+  <!-- Button Trigger for edit staff modal -->
   <td><%= link_to 'Edit', edit_staff_path(staff), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editstaff-#{staff.id}"}%></td>
   <td><%= link_to 'Delete', staff_path(staff) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
 </tr>

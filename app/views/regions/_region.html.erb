@@ -1,6 +1,8 @@
 <tr id="region-<%=region.id %>">
   <td><%= region.name %></td>
+  <!-- Region show page modal button trigger-->
   <td><%= link_to 'Show', region_path(region), class: 'btn btn-info', data: {remote: true, bs_toggle: "modal", bs_target: "#showregion-#{region.id}"} %></td>
+  <!-- Button trigger for edit region modal -->
   <td><%= link_to 'Edit', edit_region_path(region), class: 'btn btn-primary', data: {remote: true, bs_toggle: "modal", bs_target: "#editregion-#{region.id}"} %></td>
   <td><%= link_to 'Delete', region_path(region) , method: :delete , data: {remote: true, confirm: "Are you sure?"}, class: 'btn btn-danger'%></td>
 </tr>
