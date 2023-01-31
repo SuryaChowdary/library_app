@@ -4,7 +4,7 @@ class Company < ApplicationRecord
   has_many :regions, through: :company_regions
   has_many :company_locations
   has_many :locations , through: :company_locations
-  has_many :libraries
+  has_many :libraries, dependent: :destroy
   validate :check_region_and_location
 
   private
