@@ -23,7 +23,7 @@ class LibrariesController < ApplicationController
     if @library.save
       respond_to do|format|
         format.html {redirect_to libraries_path}
-        format.js {render :content_type => 'application/javascript'}
+        format.js {redirect_to libraries_path, :content_type => 'application/javascript'}
       end
     else
       respond_to do|format|

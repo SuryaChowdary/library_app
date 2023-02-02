@@ -23,7 +23,7 @@ class StaffsController < ApplicationController
     if @staff.save
       respond_to do|format|
         format.html {redirect_to staffs_path}
-        format.js {render :content_type => 'application/javascript'}
+        format.js {redirect_to staffs_path, :content_type => 'application/javascript'}
       end
     else
       respond_to do|format|
